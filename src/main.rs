@@ -5,12 +5,11 @@
 #![no_main]
 
 use cortex_m_rt::entry;
-// use defmt::*;
-// use defmt_rtt as _;
+use defmt::*;
+use defmt_rtt as _;
 use embedded_hal::digital::v2::OutputPin;
 use embedded_time::fixed_point::FixedPoint;
-// use panic_probe as _;
-use panic_halt as _;
+use panic_probe as _;
 
 // Provide an alias for our BSP so we can switch targets quickly.
 // Uncomment the BSP you included in Cargo.toml, the rest of the code does not need to change.
@@ -58,10 +57,10 @@ fn main() -> ! {
     let mut led_pin = pins.led.into_push_pull_output();
 
     loop {
-        // info!("on!");
+        info!("LED on!");
         led_pin.set_high().unwrap();
         delay.delay_ms(500);
-        // info!("off!");
+        info!("LED off!");
         led_pin.set_low().unwrap();
         delay.delay_ms(500);
     }
